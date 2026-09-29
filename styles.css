@@ -11,7 +11,7 @@ body {
 header {
   text-align: center;
   padding: 90px 20px 60px;
-  background: linear-gradient(135deg, #a7a9ab, #151515, #35043d, #1f6feb);
+  background: linear-gradient(135deg, #080808, #e7e7e7, #42024c, #020267);
   background-size: 300% 300%;
   animation: fondoMovil 12s ease infinite;
 }
@@ -86,7 +86,7 @@ h2 {
 
 .card:hover {
   transform: translateY(-6px);
-  border-color: #9a0ab6;
+  border-color: #bb00ff;
   box-shadow: 0 10px 30px rgba(31, 111, 235, 0.35);
 }
 
