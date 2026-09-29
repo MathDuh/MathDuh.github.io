@@ -7,16 +7,39 @@ body {
   line-height: 1.6;
 }
 
-
+/* ---------- HEADER con degradado animado ---------- */
 header {
   text-align: center;
-  padding: 80px 20px 50px;
-  background: linear-gradient(135deg, #949596, #02010f);
+  padding: 90px 20px 60px;
+  background: linear-gradient(135deg, #1f6feb, #8957e5, #d946ef, #1f6feb);
+  background-size: 300% 300%;
+  animation: fondoMovil 12s ease infinite;
 }
 
-header h1 { font-size: 5rem; margin-bottom: 10px; }
-header p  { font-size: 3rem; opacity: 1; }
+@keyframes fondoMovil {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
+header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+header p  { font-size: 1.2rem; opacity: 0.9; margin-bottom: 6px; }
+
+/* ---------- Animación de entrada (al cargar la página) ---------- */
+@keyframes entrada {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.aparece {
+  opacity: 0;
+  animation: entrada 0.8s ease forwards;
+}
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.5s; }
+.delay-3 { animation-delay: 0.8s; }
+
+/* ---------- Contenido ---------- */
 main {
   max-width: 900px;
   margin: 40px auto;
@@ -29,7 +52,8 @@ h2 {
   padding-bottom: 8px;
 }
 
-.sobre-mi { margin-bottom: 2px; }
+.sobre-mi { margin-bottom: 40px; }
+.sobre-mi p { margin-bottom: 10px; }
 
 .proyectos {
   display: grid;
@@ -38,6 +62,7 @@ h2 {
   margin-bottom: 50px;
 }
 
+/* ---------- Tarjetas + reveal al hacer scroll ---------- */
 .card {
   display: block;
   background: #161b22;
@@ -46,28 +71,52 @@ h2 {
   padding: 20px;
   color: inherit;
   text-decoration: none;
-  transition: transform 0.2s, border-color 0.2s;
+
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease,
+              border-color 0.3s, box-shadow 0.3s;
 }
 
-.card:hover { transform: translateY(-4px); border-color: #1f6feb; }
-.card:focus-visible { outline: 2px solid #58a6ff; outline-offset: 3px; }
+/* JavaScript agrega esta clase cuando la tarjeta entra en pantalla */
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: #58a6ff;
+  box-shadow: 0 10px 30px rgba(31, 111, 235, 0.35);
+}
+
 .card h3 { margin-bottom: 8px; color: #58a6ff; }
 
+/* ---------- Botón ---------- */
 .btn {
   display: inline-block;
   margin-top: 10px;
   padding: 10px 20px;
-  background: #083912;
+  background: #238636;
   color: white;
   text-decoration: none;
   border-radius: 6px;
+  transition: background 0.3s, transform 0.2s;
 }
-
-.btn:hover { background: #2ea043; }
+.btn:hover { background: #2ea043; transform: scale(1.05); }
 
 footer {
   text-align: center;
   padding: 30px;
   color: #8b949e;
   border-top: 1px solid #30363d;
+}
+
+/* ---------- Accesibilidad: sin animaciones si el usuario lo pidió ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .aparece, .card { opacity: 1; transform: none; }
 }
