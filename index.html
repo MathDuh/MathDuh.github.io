@@ -12,6 +12,8 @@
     <h1 class="aparece delay-1">¡Hola, me llamo Mathias Olivera! <span class="mano">👋</span></h1>
     <p class="aparece delay-2">Estudiante de Ingeniería Informática · Paraguay</p>
     <p class="aparece delay-3">Bienvenido a mi primera página publicada con GitHub Pages</p>
+    <!-- El texto de adentro del span es el "plan B" si Typed.js no carga -->
+    <p class="aparece delay-4">Me interesa <span id="escribiendo">el desarrollo de software</span></p>
   </header>
 
   <main>
@@ -23,27 +25,55 @@
 
     <h2 class="reveal">Mis proyectos</h2>
     <div class="proyectos">
-      <a class="card reveal" href="https://www.youtube.com/watch?v=QDia3e12czc" target="_blank">
-        <h3>Proyecto 1</h3>
-        <p>Realicé un sistema tipo web local para una empresa dedicada al alquiler de autos.</p>
+
+      <a class="card reveal" href="https://www.youtube.com/watch?v=QDia3e12czc" target="_blank" rel="noopener">
+        <div class="card-img">
+          <img src="img/imagen1_proy.1.png"
+               alt="Vista previa del sistema de alquiler de autos"
+               width="600" height="400" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Proyecto 1</h3>
+          <p>Realicé un sistema tipo web local para una empresa dedicada al alquiler de autos.</p>
+        </div>
       </a>
-      <a class="card reveal" href="https://www.youtube.com/watch?v=QDia3e12czc" target="_blank">
-        <h3>Proyecto 2</h3>
-        <p>Realicé como proyecto de facultad un sistema de gestión para una empresa local.</p>
+
+      <a class="card reveal" href="https://www.youtube.com/watch?v=QDia3e12czc" target="_blank" rel="noopener">
+        <div class="card-img">
+          <img src="https://picsum.photos/id/20/600/400"
+               alt="Vista previa del sistema de gestión para una empresa local"
+               width="600" height="400" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Proyecto 2</h3>
+          <p>Realicé como proyecto de facultad un sistema de gestión para una empresa local.</p>
+        </div>
       </a>
-      <a class="card reveal" href="https://www.youtube.com/watch?v=QDia3e12czc" target="_blank">
-        <h3>Proyecto 3</h3>
-        <p>Realicé un sistema de control de inventario para una tienda de artículos electrónicos.</p>
+
+      <a class="card reveal" href="https://www.youtube.com/watch?v=QDia3e12czc" target="_blank" rel="noopener">
+        <div class="card-img">
+          <img src="https://picsum.photos/id/60/600/400"
+               alt="Vista previa del sistema de control de inventario"
+               width="600" height="400" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Proyecto 3</h3>
+          <p>Realicé un sistema de control de inventario para una tienda de artículos electrónicos.</p>
+        </div>
       </a>
+
     </div>
 
-    <a class="btn" href="https://github.com/MathDuh" target="_blank">Ver mi GitHub</a>
+    <a class="btn" href="https://github.com/MathDuh" target="_blank" rel="noopener">Ver mi GitHub</a>
   </main>
 
   <footer>
     <p>Hecho con ❤️ y aprendiendo Git · 2026</p>
   </footer>
 
+  <!-- 1) Librería externa por CDN (versión fija) -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0"></script>
+  <!-- 2) Tu script, DESPUÉS de la librería que usa -->
   <script src="script.js"></script>
 </body>
 </html>
