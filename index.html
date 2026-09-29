@@ -4,38 +4,160 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mi primera página en GitHub</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: #0d1117;
+      color: #e6edf3;
+      line-height: 1.6;
+    }
+
+    /* ---------- HEADER con degradado animado ---------- */
+    header {
+      text-align: center;
+      padding: 90px 20px 60px;
+      background: linear-gradient(135deg, #1f6feb, #8957e5, #d946ef, #1f6feb);
+      background-size: 300% 300%;
+      animation: fondoMovil 12s ease infinite;
+    }
+
+    @keyframes fondoMovil {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+    header p  { font-size: 1.2rem; opacity: 0.9; margin-bottom: 6px; }
+
+    /* ---------- Animación de entrada (al cargar la página) ---------- */
+    @keyframes entrada {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .aparece {
+      opacity: 0;                       /* empieza invisible */
+      animation: entrada 0.8s ease forwards;
+    }
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.5s; }
+    .delay-3 { animation-delay: 0.8s; }
+
+    /* ---------- Contenido ---------- */
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      border-bottom: 1px solid #30363d;
+      padding-bottom: 8px;
+    }
+
+    .sobre-mi { margin-bottom: 40px; }
+    .sobre-mi p { margin-bottom: 10px; }
+
+    .proyectos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 50px;
+    }
+
+    /* ---------- Tarjetas + reveal al hacer scroll ---------- */
+    .card {
+      display: block;
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 10px;
+      padding: 20px;
+      color: inherit;
+      text-decoration: none;
+
+      /* estado inicial del reveal: invisible y desplazada */
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease,
+                  border-color 0.3s, box-shadow 0.3s;
+    }
+
+    /* JavaScript agrega esta clase cuando la tarjeta entra en pantalla */
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: #58a6ff;
+      box-shadow: 0 10px 30px rgba(31, 111, 235, 0.35);
+    }
+
+    .card h3 { margin-bottom: 8px; color: #58a6ff; }
+
+    /* ---------- Botón ---------- */
+    .btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background: #238636;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .btn:hover { background: #2ea043; transform: scale(1.05); }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #8b949e;
+      border-top: 1px solid #30363d;
+    }
+
+    /* ---------- Accesibilidad: sin animaciones si el usuario lo pidió ---------- */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      .aparece, .card { opacity: 1; transform: none; }
+    }
+  </style>
 </head>
 <body>
 
   <header>
-    <h1>¡Hola, me llamo Mathias Olivera! 👋</h1>
-    <p>Estudiante de Ingeniería Informática · Paraguay</p>
-    <p>Bienvenido a mi primera página publicada con GitHub Pages</p>
+    <h1 class="aparece delay-1">¡Hola, me llamo Mathias Olivera! 👋</h1>
+    <p class="aparece delay-2">Estudiante de Ingeniería Informática · Paraguay</p>
+    <p class="aparece delay-3">Bienvenido a mi primera página publicada con GitHub Pages</p>
   </header>
 
   <main>
-    <h2>Sobre mí</h2>
-    <p class="sobre-mi">
-    <p>Me interesa el desarrollo de software, las redes y los sistemas ERP.</p>
-    <p>Esta es mi primera página publicada con GitHub Pages.</p>
-    <p>Tengo un pequeño portafolio que me gustaria compartir con ustedes</p>
-    <p></p>
+    <section class="sobre-mi">
+      <h2>Sobre mí</h2>
+      <p>Me interesa el desarrollo de software, las redes y los sistemas ERP.</p>
+      <p>Tengo un pequeño portafolio que me gustaría compartir con ustedes.</p>
+    </section>
 
     <h2>Mis proyectos</h2>
     <div class="proyectos">
-      <a class="card" href="https://www.youtube.com/watch?v=QDia3e12czc" target="_blank" rel="noopener noreferrer">
+      <a class="card" href="https://www.youtube.com/watch?v=QDia3e12czc" target="_blank">
         <h3>Proyecto 1</h3>
-        <p>Realice un sistema tipo web local para una empresa dedicada al alquiler de autos.</p>
+        <p>Realicé un sistema tipo web local para una empresa dedicada al alquiler de autos.</p>
       </a>
-      <a class="card" href="https://www.youtube.com/watch?v=QDia3e12czc" target="_blank" rel="noopener noreferrer">
+      <a class="card" href="https://www.youtube.com/watch?v=QDia3e12czc" target="_blank">
         <h3>Proyecto 2</h3>
-        <p>Realice como proyecto de facultad un sistema de gestión para una empresa local.</p>
+        <p>Realicé como proyecto de facultad un sistema de gestión para una empresa local.</p>
       </a>
-      <a class="card" href="https://www.youtube.com/watch?v=QDia3e12czc" target="_blank" rel="noopener noreferrer">
+      <a class="card" href="https://www.youtube.com/watch?v=QDia3e12czc" target="_blank">
         <h3>Proyecto 3</h3>
-        <p>Realice un sistema de control de inventario para una tienda de artículos electrónicos.</p>
+        <p>Realicé un sistema de control de inventario para una tienda de artículos electrónicos.</p>
       </a>
     </div>
 
@@ -43,8 +165,23 @@
   </main>
 
   <footer>
-    <p>Hecho con ❤️ y aprendiendo Git · <span id="year"></span></p>
+    <p>Hecho con ❤️ y aprendiendo Git · 2026</p>
   </footer>
+
+  <script>
+    // Observa las tarjetas y les agrega la clase "visible" cuando entran en pantalla
+    const observador = new IntersectionObserver((entradas) => {
+      entradas.forEach((entrada, i) => {
+        if (entrada.isIntersecting) {
+          // pequeño retraso escalonado según el orden de aparición
+          setTimeout(() => entrada.target.classList.add('visible'), i * 150);
+          observador.unobserve(entrada.target); // ya no hace falta seguir observándola
+        }
+      });
+    }, { threshold: 0.2 }); // se activa cuando se ve el 20% de la tarjeta
+
+    document.querySelectorAll('.card').forEach(card => observador.observe(card));
+  </script>
 
 </body>
 </html>
