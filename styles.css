@@ -1,9 +1,29 @@
+/* =========================================================
+   VARIABLES: cambiá los colores y velocidades desde acá
+   ========================================================= */
+:root {
+  --fondo: #0d1117;
+  --texto: #e6edf3;
+  --texto-suave: #8b949e;
+  --tarjeta: #161b22;
+  --borde: #30363d;
+  --acento: #58a6ff;
+  --boton: #238636;
+  --boton-hover: #2ea043;
+
+  --grad-1: #1f6feb;
+  --grad-2: #8957e5;
+  --grad-3: #d946ef;
+
+  --vel-fondo: 12s;   /* velocidad del degradado del header */
+}
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  background: #0d1117;
-  color: #e6edf3;
+  background: var(--fondo);
+  color: var(--texto);
   line-height: 1.6;
 }
 
@@ -11,9 +31,9 @@ body {
 header {
   text-align: center;
   padding: 90px 20px 60px;
-  background: linear-gradient(135deg, #080808, #e7e7e7, #42024c, #020267);
+  background: linear-gradient(135deg, var(--grad-1), var(--grad-2), var(--grad-3), var(--grad-1));
   background-size: 300% 300%;
-  animation: fondoMovil 12s ease infinite;
+  animation: fondoMovil var(--vel-fondo) ease infinite;
 }
 
 @keyframes fondoMovil {
@@ -25,7 +45,23 @@ header {
 header h1 { font-size: 2.5rem; margin-bottom: 10px; }
 header p  { font-size: 1.2rem; opacity: 0.9; margin-bottom: 6px; }
 
-/* ---------- Animación de entrada (al cargar la página) ---------- */
+/* ---------- Extra 1: la mano que saluda ---------- */
+.mano {
+  display: inline-block;
+  transform-origin: 70% 70%;
+  animation: saludo 2.5s ease-in-out infinite;
+}
+
+@keyframes saludo {
+  0%, 60%, 100% { transform: rotate(0deg); }
+  10% { transform: rotate(14deg); }
+  20% { transform: rotate(-8deg); }
+  30% { transform: rotate(14deg); }
+  40% { transform: rotate(-4deg); }
+  50% { transform: rotate(10deg); }
+}
+
+/* ---------- Entrada al cargar la página ---------- */
 @keyframes entrada {
   from { opacity: 0; transform: translateY(30px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -46,15 +82,43 @@ main {
   padding: 0 20px;
 }
 
-h2 {
-  margin-bottom: 20px;
-  border-bottom: 1px solid #30363d;
-  padding-bottom: 8px;
-}
-
 .sobre-mi { margin-bottom: 40px; }
 .sobre-mi p { margin-bottom: 10px; }
 
+/* ---------- Reveal reutilizable: agregá class="reveal" a cualquier elemento ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Extra 2: títulos con línea que se dibuja ---------- */
+h2 {
+  position: relative;
+  margin-bottom: 20px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--borde);
+}
+
+h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 2px;
+  width: 0;
+  background: linear-gradient(90deg, var(--acento), var(--grad-3));
+  transition: width 0.9s ease 0.3s;
+}
+
+h2.visible::after { width: 100%; }
+
+/* ---------- Tarjetas ---------- */
 .proyectos {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -62,61 +126,60 @@ h2 {
   margin-bottom: 50px;
 }
 
-/* ---------- Tarjetas + reveal al hacer scroll ---------- */
 .card {
   display: block;
-  background: #161b22;
-  border: 1px solid #30363d;
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
   border-radius: 10px;
   padding: 20px;
   color: inherit;
   text-decoration: none;
-
-  opacity: 0;
-  transform: translateY(40px);
   transition: opacity 0.7s ease, transform 0.7s ease,
               border-color 0.3s, box-shadow 0.3s;
 }
 
-/* JavaScript agrega esta clase cuando la tarjeta entra en pantalla */
-.card.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
+/* va DESPUÉS de .reveal.visible para que el hover gane */
 .card:hover {
   transform: translateY(-6px);
-  border-color: #bb00ff;
+  border-color: var(--acento);
   box-shadow: 0 10px 30px rgba(31, 111, 235, 0.35);
 }
 
-.card h3 { margin-bottom: 8px; color: #58a6ff; }
+.card h3 { margin-bottom: 8px; color: var(--acento); }
 
-/* ---------- Botón ---------- */
+/* ---------- Extra 3: botón que pulsa ---------- */
 .btn {
   display: inline-block;
   margin-top: 10px;
   padding: 10px 20px;
-  background: #238636;
+  background: var(--boton);
   color: white;
   text-decoration: none;
   border-radius: 6px;
   transition: background 0.3s, transform 0.2s;
+  animation: pulso 2.5s infinite;
 }
-.btn:hover { background: #2ea043; transform: scale(1.05); }
+.btn:hover { background: var(--boton-hover); transform: scale(1.05); }
+
+@keyframes pulso {
+  0%   { box-shadow: 0 0 0 0 rgba(35, 134, 54, 0.6); }
+  70%  { box-shadow: 0 0 0 14px rgba(35, 134, 54, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(35, 134, 54, 0); }
+}
 
 footer {
   text-align: center;
   padding: 30px;
-  color: #8b949e;
-  border-top: 1px solid #30363d;
+  color: var(--texto-suave);
+  border-top: 1px solid var(--borde);
 }
 
-/* ---------- Accesibilidad: sin animaciones si el usuario lo pidió ---------- */
+/* ---------- Accesibilidad ---------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation: none !important;
     transition: none !important;
   }
-  .aparece, .card { opacity: 1; transform: none; }
+  .aparece, .reveal { opacity: 1; transform: none; }
+  h2::after { width: 100%; }
 }

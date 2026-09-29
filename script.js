@@ -1,12 +1,11 @@
-// Observa las tarjetas y les agrega la clase "visible" cuando entran en pantalla
+// Observa todo lo que tenga la clase "reveal" y le agrega "visible" al entrar en pantalla
 const observador = new IntersectionObserver((entradas) => {
   entradas.forEach((entrada, i) => {
     if (entrada.isIntersecting) {
-      // pequeño retraso escalonado según el orden de aparición
-      setTimeout(() => entrada.target.classList.add('visible'), i * 150);
-      observador.unobserve(entrada.target); // ya no hace falta seguir observándola
+      setTimeout(() => entrada.target.classList.add('visible'), i * 120);
+      observador.unobserve(entrada.target);
     }
   });
-}, { threshold: 0.2 }); // se activa cuando se ve el 20% de la tarjeta
+}, { threshold: 0.2 });
 
-document.querySelectorAll('.card').forEach(card => observador.observe(card));
+document.querySelectorAll('.reveal').forEach(el => observador.observe(el));
