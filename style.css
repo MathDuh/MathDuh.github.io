@@ -153,7 +153,7 @@ h2.visible::after { width: 100%; }
   inset: 0;
   background: radial-gradient(
     circle at var(--mx) var(--my),
-    rgba(255, 255, 255, 0.18),
+    rgba(217, 70, 239, 0.3),
     transparent 55%
   );
   opacity: 0;

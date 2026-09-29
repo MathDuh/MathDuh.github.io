@@ -16,7 +16,7 @@ document.querySelectorAll('.reveal').forEach(el => observador.observe(el));
 /* =========================================================
    2) INCLINACIÓN 3D DE LAS TARJETAS
    ========================================================= */
-const MAX_INCLINACION = 10; // grados máximos hacia cada lado (probá 5, 15, 20...)
+const MAX_INCLINACION = 20; // grados máximos hacia cada lado (probá 5, 15, 20...)
 
 // Si el usuario pidió menos movimiento, no activamos el efecto
 const menosMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
