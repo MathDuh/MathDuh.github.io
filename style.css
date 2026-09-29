@@ -45,7 +45,7 @@ header {
 header h1 { font-size: 2.5rem; margin-bottom: 10px; }
 header p  { font-size: 1.2rem; opacity: 0.9; margin-bottom: 6px; }
 
-/* ---------- Extra 1: la mano que saluda ---------- */
+/* ---------- La mano que saluda ---------- */
 .mano {
   display: inline-block;
   transform-origin: 70% 70%;
@@ -97,7 +97,7 @@ main {
   transform: translateY(0);
 }
 
-/* ---------- Extra 2: títulos con línea que se dibuja ---------- */
+/* ---------- Títulos con línea que se dibuja ---------- */
 h2 {
   position: relative;
   margin-bottom: 20px;
@@ -118,7 +118,7 @@ h2::after {
 
 h2.visible::after { width: 100%; }
 
-/* ---------- Tarjetas ---------- */
+/* ---------- Tarjetas con inclinación 3D ---------- */
 .proyectos {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -127,6 +127,14 @@ h2.visible::after { width: 100%; }
 }
 
 .card {
+  /* valores por defecto de las variables que escribe el JS */
+  --rx: 0deg;
+  --ry: 0deg;
+  --mx: 50%;
+  --my: 50%;
+
+  position: relative;      /* necesario para ubicar el brillo adentro */
+  overflow: hidden;        /* el brillo no se sale de la tarjeta */
   display: block;
   background: var(--tarjeta);
   border: 1px solid var(--borde);
@@ -138,16 +146,41 @@ h2.visible::after { width: 100%; }
               border-color 0.3s, box-shadow 0.3s;
 }
 
+/* Capa de brillo que sigue al mouse */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--mx) var(--my),
+    rgba(255, 255, 255, 0.18),
+    transparent 55%
+  );
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;    /* no bloquea los clics */
+}
+
 /* va DESPUÉS de .reveal.visible para que el hover gane */
 .card:hover {
-  transform: translateY(-6px);
+  transform: perspective(800px)
+             rotateX(var(--rx))
+             rotateY(var(--ry))
+             translateY(-6px)
+             scale(1.02);
   border-color: var(--acento);
-  box-shadow: 0 10px 30px rgba(31, 111, 235, 0.35);
+  box-shadow: 0 15px 35px rgba(31, 111, 235, 0.35);
+
+  /* transform rápido al hover = la inclinación sigue al mouse sin retraso */
+  transition: opacity 0.7s ease, transform 0.1s ease-out,
+              border-color 0.3s, box-shadow 0.3s;
 }
+
+.card:hover::before { opacity: 1; }
 
 .card h3 { margin-bottom: 8px; color: var(--acento); }
 
-/* ---------- Extra 3: botón que pulsa ---------- */
+/* ---------- Botón que pulsa ---------- */
 .btn {
   display: inline-block;
   margin-top: 10px;
