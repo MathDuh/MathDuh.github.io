@@ -14,7 +14,7 @@ header {
   background: linear-gradient(135deg, #949596, #02010f);
 }
 
-header h1 { font-size: 1.5rem; margin-bottom: 10px; }
+header h1 { font-size: 2rem; margin-bottom: 10px; }
 header p  { font-size: 0.9rem; opacity: 1; }
 
 main {
@@ -29,7 +29,7 @@ h2 {
   padding-bottom: 8px;
 }
 
-.sobre-mi { margin-bottom: 40px; }
+.sobre-mi { margin-bottom: 25px; }
 
 .proyectos {
   display: grid;
