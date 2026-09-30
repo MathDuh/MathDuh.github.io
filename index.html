@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
+<head>  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mi primera página en GitHub</title>
@@ -19,13 +19,12 @@
   <main>
     <section class="sobre-mi">
       <h2 class="reveal">Sobre mí</h2>
-      <p class="reveal">Me interesa el desarrollo de software, las redes y los sistemas ERP.</p>
+      <p class="reveal">SIC SEVEN.</p>
       <p class="reveal">A continuación, algunos de mis proyectos.</p>
     </section>
 
     <h2 class="reveal">Mis proyectos</h2>
     <div class="proyectos">
-
       <a class="card reveal" href="https://www.youtube.com/watch?v=QDia3e12czc" target="_blank" rel="noopener">
         <div class="card-img">
           <img src="img/imagen1_proy.1.png"
@@ -34,9 +33,22 @@
         </div>
         <div class="card-body">
           <h3>Proyecto 1</h3>
+          <h3>🚗🏁</h3>
           <p>Realicé un sistema tipo web local para una empresa dedicada al alquiler de autos.</p>
         </div>
       </a>
+      
+      <a class="card reveal" href="https://www.youtube.com/watch?v=QDia3e12czc" target="_blank" rel="noopener">
+        <div class="card-img">
+          <img src="https://picsum.photos/id/10/600/400"
+               alt="Vista previa del sistema de gestión para una empresa local"
+               width="600" height="400" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Proyecto 2</h3>
+          <h3>🤓📋</h3>
+          <p>Realicé como proyecto de facultad un sistema de gestión para una empresa local.</p>
+        </div>
 
       <a class="card reveal" href="https://www.youtube.com/watch?v=QDia3e12czc" target="_blank" rel="noopener">
         <div class="card-img">
@@ -45,7 +57,7 @@
                width="600" height="400" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Proyecto 2</h3>
+          <h3>Proyecto 3</h3>
           <p>Realicé como proyecto de facultad un sistema de gestión para una empresa local.</p>
         </div>
       </a>
@@ -57,18 +69,35 @@
                width="600" height="400" loading="lazy">
         </div>
         <div class="card-body">
-          <h3>Proyecto 3</h3>
-          <p>Realicé un sistema de control de inventario para una tienda de artículos electrónicos.</p>
+          <h3>Proyecto 4</h3>
+          <p>sistema en proceso.</p>
         </div>
       </a>
 
     </div>
-
     <a class="btn" href="https://github.com/MathDuh" target="_blank" rel="noopener">Ver mi GitHub</a>
+    <section class="contacto" id="contacto">
+      <h2 class="reveal">Contacto</h2>
+      <p class="reveal">Cuentame que necesitas y te ayudo.</p>
+
+      <form id="form-contacto" class="reveal">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="mensaje">Idea o necesidad:</label>
+        <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+        
+        <button type="submit" class="btn">Enviar por whatsapp</button>
+      </form>
+    </section>
+
   </main>
 
   <footer>
     <p>Hecho con ❤️ y aprendiendo Git · 2026</p>
+    <a class="wa-flotante" id="wa-flotante" href="#contacto" target="_blank" rel="noopener" arial-label="Escribime por WhatsApp">
+      <span>💬</span> WhatsApp
+    </a>
   </footer>
 
   <!-- 1) Librería externa por CDN (versión fija) -->

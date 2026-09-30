@@ -68,3 +68,33 @@ if (document.querySelector('#escribiendo') && typeof Typed !== 'undefined' && !m
     loop: true         // repite infinitamente
   });
 }
+/* =========================================================
+   4) WHATSAPP: botón flotante y formulario de contacto
+   ========================================================= */
+// Código de país + número, SIN "+", espacios, guiones ni cero inicial
+const NUMERO_WHATSAPP = '595XXXXXXXXX';   // <-- cambialo por el tuyo
+
+// Arma el enlace de WhatsApp con el mensaje ya codificado
+function enlaceWhatsApp(texto) {
+  return 'https://wa.me/' + NUMERO_WHATSAPP + '?text=' + encodeURIComponent(texto);
+}
+
+// Botón flotante: le ponemos el enlace real
+const botonFlotante = document.querySelector('#wa-flotante');
+if (botonFlotante) {
+  botonFlotante.href = enlaceWhatsApp('Hola Mathias, vi tu portafolio y quiero consultarte por un proyecto.');
+}
+
+// Formulario: en vez de enviarse a un servidor, abre WhatsApp con el mensaje armado
+const formContacto = document.querySelector('#form-contacto');
+if (formContacto) {
+  formContacto.addEventListener('submit', (e) => {
+    e.preventDefault();   // evita que la página se recargue
+
+    const nombre  = formContacto.nombre.value.trim();
+    const mensaje = formContacto.mensaje.value.trim();
+    const texto   = `Hola, soy ${nombre}. ${mensaje}`;
+
+    window.open(enlaceWhatsApp(texto), '_blank', 'noopener');
+  });
+}s

@@ -11,11 +11,11 @@
   --boton: #238636;
   --boton-hover: #2ea043;
 
-  --grad-1: #1f6feb;
-  --grad-2: #8957e5;
-  --grad-3: #d946ef;
+  --grad-1: #0e002f;
+  --grad-2: #010101;
+  --grad-3: #500e59;
 
-  --vel-fondo: 12s;   /* velocidad del degradado del header */
+  --vel-fondo: 8s;   /* velocidad del degradado del header */
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -30,6 +30,10 @@ body {
 /* ---------- HEADER con degradado animado ---------- */
 header {
   text-align: center;
+  text-rendering: optimizeLegibility;
+  text-shadow: 0 5px 5px rgb(8, 7, 7);
+  text-transform: uppercase;
+  text-decoration-style: wavy;
   padding: 90px 20px 60px;
   background: linear-gradient(135deg, var(--grad-1), var(--grad-2), var(--grad-3), var(--grad-1));
   background-size: 300% 300%;
@@ -42,14 +46,14 @@ header {
   100% { background-position: 0% 50%; }
 }
 
-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
-header p  { font-size: 1.2rem; opacity: 0.9; margin-bottom: 6px; }
+header h1 { font-size: 3.5rem; margin-bottom: 15px; }
+header p  { font-size: 1.2rem; opacity: 0.9; margin-bottom: 8px; }
 
 /* ---------- La mano que saluda ---------- */
 .mano {
   display: inline-block;
   transform-origin: 70% 70%;
-  animation: saludo 2.5s ease-in-out infinite;
+  animation: saludo 10s ease-in-out infinite;
 }
 
 @keyframes saludo {
@@ -226,6 +230,67 @@ footer {
   padding: 30px;
   color: var(--texto-suave);
   border-top: 1px solid var(--borde);
+}
+
+/* contacto */
+.contacto { margin: 50px 0; }
+.contacto a{ margin-bottom: 20px; color: var(--texto-suave);}
+
+#form-contacto{
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 20px;
+  max-width: 520px;
+}
+#form-contacto label {
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+}
+#form-contacto input,
+#form-contacto textarea {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--tarjeta);
+  color: var(--texto);
+  border-radius: 6px;
+  border: 1px solid var(--borde);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+#form-contacto input:focus,
+#form-contacto textarea:focus {
+  outline: none;
+  border-color: var(--acento);
+  box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.25);
+}
+#form-contacto button{
+  justify-self: start;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  background: var(--boton);
+}
+.wa-flotante{
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(37, 211, 102, 0.9);
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 999px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
+}
+.wa-flotante:hover{
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(18, 140, 126, 0.5);
+  background: rgb(29, 37, 31);
 }
 
 /* ---------- Accesibilidad ---------- */
