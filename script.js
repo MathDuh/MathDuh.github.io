@@ -72,7 +72,7 @@ if (document.querySelector('#escribiendo') && typeof Typed !== 'undefined' && !m
    4) WHATSAPP: botón flotante y formulario de contacto
    ========================================================= */
 // Código de país + número, SIN "+", espacios, guiones ni cero inicial
-const NUMERO_WHATSAPP = '595XXXXXXXXX';   // <-- cambialo por el tuyo
+const NUMERO_WHATSAPP = '595981764358';   // <-- cambialo por el tuyo
 
 // Arma el enlace de WhatsApp con el mensaje ya codificado
 function enlaceWhatsApp(texto) {
